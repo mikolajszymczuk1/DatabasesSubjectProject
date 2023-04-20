@@ -1,13 +1,6 @@
 # ====== Database utils for manage database (SQLite3) ======
 import sqlite3
 
-# Tables
-ATHLETE_TABLE = 'athlete'
-EXERCISE_TYPE_TABLE = 'exerciseType'
-EXERCISE_TABLE = 'exercise'
-PLAN_TABLE = 'plan'
-
-
 def create_connection(db_file: str) -> sqlite3.Connection | None:
     """
     create a database connection to the SQLite database specified by the db_file
@@ -23,3 +16,11 @@ def create_connection(db_file: str) -> sqlite3.Connection | None:
         print(f'Can not connect to database: {e}')
 
     return conn
+
+
+def get_all_from_table(conn: sqlite3.Connection, table_name: str) -> list:
+    """ Get all data from a table """
+
+    query = f'SELECT * FROM {table_name}'
+    result = conn.execute(query)
+    return result.fetchall()
