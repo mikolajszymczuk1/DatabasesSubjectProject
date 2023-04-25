@@ -30,7 +30,7 @@ CREATE TABLE IF NOT EXISTS PlanGoal (
 -- Athlete table that contains information about athletes
 CREATE TABLE IF NOT EXISTS Athlete (
     athleteID INT UNIQUE NOT NULL,
-    fistName VARCHAR(100) NOT NULL,
+    firstName VARCHAR(100) NOT NULL,
     lastName VARCHAR(100) NOT NULL,
     age INT NOT NULL,
     athleteWeight INT NOT NULL,
