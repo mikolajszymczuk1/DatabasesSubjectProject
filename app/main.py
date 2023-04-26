@@ -1,6 +1,6 @@
 from os import path
-from db import create_connection
-from bo import get_all_from_table
+from dbManager.db import create_connection
+from dbManager.bo import get_all_from_table
 from enums.TablesEnum import TablesEnum
 
 # Database config

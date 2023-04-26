@@ -1,4 +1,4 @@
-import db
+from . import db
 from sqlite3 import Connection
 
 def get_all_from_table(conn: Connection, table_name: str) -> list:

@@ -10,3 +10,14 @@ class TablesEnum(Enum):
     ATHLETE_TABLE = 'athlete'
     PLAN_TABLE = 'plan'
     EXERCISE_TABLE = 'exercise'
+
+    @staticmethod
+    def getValues():
+        return [
+            TablesEnum.EXPERIENCE_TABLE.value,
+            TablesEnum.EXERCISE_TYPE_TABLE.value,
+            TablesEnum.PLAN_GOAL_TABLE.value,
+            TablesEnum.ATHLETE_TABLE.value,
+            TablesEnum.PLAN_TABLE.value,
+            TablesEnum.EXERCISE_TABLE.value
+        ]
