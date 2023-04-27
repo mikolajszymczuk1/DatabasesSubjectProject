@@ -15,3 +15,5 @@ all_exercise_types = get_all_from_table(conn, TablesEnum.EXERCISE_TYPE_TABLE.val
 print(all_exercise_types)
 
 conn.close()
+
+# Created by Chat GPT 4   !!! NOT COMMERSIAL !!!
