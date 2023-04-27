@@ -11,7 +11,9 @@ DB_PATH = path.join(BASE_DIR, 'app', f'data/{DATABASE_NAME}.db')
 # Create database connection
 conn = create_connection(DB_PATH)
 
-all_exercise_types = get_all_from_table(conn, TablesEnum.EXERCISE_TYPE_TABLE.value)
-print(all_exercise_types)
-
-conn.close()
+if conn is not None:
+    all_exercise_types = get_all_from_table(conn, TablesEnum.EXERCISE_TYPE_TABLE.value)
+    print(all_exercise_types)
+    conn.close()
+else:
+    print('Error !')
