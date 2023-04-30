@@ -38,3 +38,18 @@ def get_athletes_data(conn: Connection) -> list:
 
     result = conn.execute(query)
     return result.fetchall()
+
+
+def get_athlete_exercises(conn: Connection, firstname: str, lastname: str) -> list:
+    """ Get all athlete's exercises """
+
+    query = f'''
+        SELECT exerciseTypeName, planName, setsCount, repsPerSetCount
+        FROM Exercise INNER JOIN Athlete ON Athlete.athleteID = Exercise.athleteID
+        INNER JOIN Plan ON Plan.planID = Exercise.planID
+        INNER JOIN ExerciseType ON ExerciseType.exerciseTypeID = Exercise.exerciseTypeID
+        WHERE firstName = '{firstname}' AND lastname = '{lastname}';
+    '''
+
+    result = conn.execute(query)
+    return result.fetchall()
