@@ -4,9 +4,12 @@ from typing import Optional
 
 def create_connection(db_file: str) -> Optional[Connection]:
     """
-    create a database connection to the SQLite database specified by the db_file
-    :param db_file: database file
-    :return: Connection object or None
+    Create a database connection to the SQLite database specified by the db_file.
+
+    :param db_file: The path to the database file.
+    :type db_file: str
+    :return: A Connection object or None.
+    :rtype: Optional[Connection]
     """
 
     conn = None
@@ -21,7 +24,16 @@ def create_connection(db_file: str) -> Optional[Connection]:
 
 
 def get_all_from_table(conn: Connection, table_name: str) -> list:
-    """ Get all data from a table """
+    """
+    Get all data from a table.
+
+    :param conn: The database connection.
+    :type conn: Connection
+    :param table_name: The name of the table.
+    :type table_name: str
+    :return: A list containing all the data from the table.
+    :rtype: list
+    """
 
     query = f'SELECT * FROM {table_name}'
     result = conn.execute(query)
@@ -29,7 +41,18 @@ def get_all_from_table(conn: Connection, table_name: str) -> list:
 
 
 def get_max_id_from_table(conn: Connection, table_name: str, id_column_name: str) -> int:
-    """ Return maximum id from table """
+    """
+    Return the maximum ID from a table.
+
+    :param conn: The database connection.
+    :type conn: Connection
+    :param table_name: The name of the table.
+    :type table_name: str
+    :param id_column_name: The name of the ID column.
+    :type id_column_name: str
+    :return: The maximum ID value.
+    :rtype: int
+    """
 
     query = f'SELECT MAX({id_column_name}) FROM {table_name};'
     result = conn.execute(query)
@@ -37,7 +60,14 @@ def get_max_id_from_table(conn: Connection, table_name: str, id_column_name: str
 
 
 def get_athletes_data(conn: Connection) -> list:
-    """ Get all athletes from a table with their experience level """
+    """
+    Get all athletes from a table with their experience level.
+
+    :param conn: The database connection.
+    :type conn: Connection
+    :return: A list of tuples containing athlete data.
+    :rtype: list
+    """
 
     query = '''
         SELECT athleteID, firstName, lastName, age, athleteWeight, gender, experienceLevel
@@ -49,7 +79,18 @@ def get_athletes_data(conn: Connection) -> list:
 
 
 def get_athlete_exercises(conn: Connection, firstname: str, lastname: str) -> list:
-    """ Get all athlete's exercises """
+    """
+    Get all exercises for a specific athlete.
+
+    :param conn: The database connection.
+    :type conn: Connection
+    :param firstname: The first name of the athlete.
+    :type firstname: str
+    :param lastname: The last name of the athlete.
+    :type lastname: str
+    :return: A list of tuples containing exercise data.
+    :rtype: list
+    """
 
     query = f'''
         SELECT exerciseTypeName, planName, setsCount, repsPerSetCount
@@ -64,7 +105,18 @@ def get_athlete_exercises(conn: Connection, firstname: str, lastname: str) -> li
 
 
 def get_single_athlete_data(conn: Connection, firstname: str, lastname: str) -> tuple:
-    """ Get data for a single athlete """
+    """
+    Get data for a single athlete.
+
+    :param conn: The database connection.
+    :type conn: Connection
+    :param firstname: The first name of the athlete.
+    :type firstname: str
+    :param lastname: The last name of the athlete.
+    :type lastname: str
+    :return: A tuple containing the athlete data.
+    :rtype: tuple
+    """
 
     query = f'''
         SELECT athleteID, firstName, lastName, age, athleteWeight, gender, experienceLevel
@@ -77,7 +129,26 @@ def get_single_athlete_data(conn: Connection, firstname: str, lastname: str) -> 
 
 
 def create_exercise_for_athlete(conn: Connection, exercise_id: int, athlete_id: int, plan_id: int, exercise_type_id: int, sets_count: int, reps_per_set_count: int) -> None:
-    """ Create new exercise record """
+    """
+    Create a new exercise record.
+
+    :param conn: The database connection.
+    :type conn: Connection
+    :param exercise_id: The ID of the exercise.
+    :type exercise_id: int
+    :param athlete_id: The ID of the athlete.
+    :type athlete_id: int
+    :param plan_id: The ID of the plan.
+    :type plan_id: int
+    :param exercise_type_id: The ID of the exercise type.
+    :type exercise_type_id: int
+    :param sets_count: The number of sets.
+    :type sets_count: int
+    :param reps_per_set_count: The number of repetitions per set.
+    :type reps_per_set_count: int
+    :return: None
+    :rtype: None
+    """
 
     query = f'''
         INSERT INTO Exercise (exerciseID, athleteID, planID, exerciseTypeID, setsCount, repsPerSetCount)
