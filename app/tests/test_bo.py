@@ -1,4 +1,5 @@
 import pytest
+from sqlite3 import Connection
 from pandas import DataFrame
 from pandas.testing import assert_frame_equal
 from ..dbManager.bo import get_all_from_table, get_athletes_data, get_athlete_exercises
@@ -7,7 +8,7 @@ from ..enums.TablesEnum import TablesEnum
 
 @pytest.mark.usefixtures('prepare_test_database')
 class TestBO:
-    def test_get_all_from_table(self, db_connection):
+    def test_get_all_from_table(self, db_connection: Connection) -> None:
         expected = [
             (1, 'Regular pushups'),
             (2, 'Wide pushups'),
@@ -18,7 +19,7 @@ class TestBO:
         result = get_all_from_table(db_connection, TablesEnum.EXERCISE_TYPE_TABLE.value)
         assert result == expected
 
-    def test_get_athletes_data(self, db_connection):
+    def test_get_athletes_data(self, db_connection: Connection) -> None:
         data = [
             (1, 'John', 'Doe', 25, 66, 'Male', 'Beginner'),
             (2, 'Jane', 'Doe', 28, 86, 'Female', 'Intermediate'),
@@ -30,7 +31,7 @@ class TestBO:
         result = get_athletes_data(db_connection)
         assert_frame_equal(result, expected)
 
-    def test_get_athlete_exercises(self, db_connection):
+    def test_get_athlete_exercises(self, db_connection: Connection) -> None:
         test_firstname = 'John'
         test_lastname = 'Doe'
 

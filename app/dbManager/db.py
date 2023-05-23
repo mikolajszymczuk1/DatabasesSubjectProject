@@ -28,6 +28,14 @@ def get_all_from_table(conn: Connection, table_name: str) -> list:
     return result.fetchall()
 
 
+def get_max_id_from_table(conn: Connection, table_name: str, id_column_name: str) -> int:
+    """ Return maximum id from table """
+
+    query = f'SELECT MAX({id_column_name}) FROM {table_name};'
+    result = conn.execute(query)
+    return result.fetchone()[0]
+
+
 def get_athletes_data(conn: Connection) -> list:
     """ Get all athletes from a table with their experience level """
 
@@ -53,3 +61,28 @@ def get_athlete_exercises(conn: Connection, firstname: str, lastname: str) -> li
 
     result = conn.execute(query)
     return result.fetchall()
+
+
+def get_single_athlete_data(conn: Connection, firstname: str, lastname: str) -> tuple:
+    """ Get data for a single athlete """
+
+    query = f'''
+        SELECT athleteID, firstName, lastName, age, athleteWeight, gender, experienceLevel
+        FROM Athlete INNER JOIN Experience on Athlete.athleteID = Experience.experienceID
+        WHERE firstName = '{firstname}' AND lastName = '{lastname}';
+    '''
+
+    result = conn.execute(query)
+    return result.fetchone()
+
+
+def create_exercise_for_athlete(conn: Connection, exerciseID: int, athleteID: int, planID: int, exerciseTypeID: int, setsCount: int, repsPerSetCount: int) -> None:
+    """ Create new exercise record """
+
+    query = f'''
+        INSERT INTO Exercise (exerciseID, athleteID, planID, exerciseTypeID, setsCount, repsPerSetCount)
+            VALUES ({exerciseID}, {athleteID}, {planID}, {exerciseTypeID}, {setsCount}, {repsPerSetCount});
+    '''
+
+    conn.execute(query)
+    conn.commit()

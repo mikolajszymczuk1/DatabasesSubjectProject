@@ -12,7 +12,7 @@ class TablesEnum(Enum):
     EXERCISE_TABLE = 'exercise'
 
     @staticmethod
-    def getValues():
+    def getValues() -> list[str]:
         return [
             TablesEnum.EXPERIENCE_TABLE.value,
             TablesEnum.EXERCISE_TYPE_TABLE.value,

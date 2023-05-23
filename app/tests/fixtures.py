@@ -23,7 +23,7 @@ def db_connection() -> Generator[Optional[Connection], None, None]:
 
 
 @pytest.fixture(scope='class', autouse=True)
-def prepare_test_database(db_connection):
+def prepare_test_database(db_connection) -> None:
     """
     Prepare the database:
     - Truncate all tables
