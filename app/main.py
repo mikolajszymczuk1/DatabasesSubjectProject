@@ -13,8 +13,8 @@ def main() -> None:
     conn = create_connection(DB_PATH)
 
     if conn is not None:
-        userDBManager = UserDBManager(conn)
-        userDBManager.run()
+        user_db_manager = UserDBManager(conn)
+        user_db_manager.run()
         conn.close()
     else:
         print('Error !')

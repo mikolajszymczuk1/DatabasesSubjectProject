@@ -76,12 +76,12 @@ def get_single_athlete_data(conn: Connection, firstname: str, lastname: str) -> 
     return result.fetchone()
 
 
-def create_exercise_for_athlete(conn: Connection, exerciseID: int, athleteID: int, planID: int, exerciseTypeID: int, setsCount: int, repsPerSetCount: int) -> None:
+def create_exercise_for_athlete(conn: Connection, exercise_id: int, athlete_id: int, plan_id: int, exercise_type_id: int, sets_count: int, reps_per_set_count: int) -> None:
     """ Create new exercise record """
 
     query = f'''
         INSERT INTO Exercise (exerciseID, athleteID, planID, exerciseTypeID, setsCount, repsPerSetCount)
-            VALUES ({exerciseID}, {athleteID}, {planID}, {exerciseTypeID}, {setsCount}, {repsPerSetCount});
+            VALUES ({exercise_id}, {athlete_id}, {plan_id}, {exercise_type_id}, {sets_count}, {reps_per_set_count});
     '''
 
     conn.execute(query)

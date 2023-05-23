@@ -37,9 +37,9 @@ def get_single_athlete_data(conn: Connection, firstname: str, lastname: str) -> 
     return result
 
 
-def create_exercise_for_athlete(conn: Connection, firstname: str, lastname: str, planID: int, exerciseTypeID: int, setsCount: int, repsPerSetCount: int) -> None:
+def create_exercise_for_athlete(conn: Connection, firstname: str, lastname: str, plan_id: int, exercise_type_id: int, sets_count: int, reps_per_set_count: int) -> None:
     """ Create new exercise record """
 
     new_exercise_id: int = get_max_id_from_table(conn, 'exercise', 'exerciseID') + 1
     athlete_id = get_single_athlete_data(conn, firstname, lastname)[0]
-    db.create_exercise_for_athlete(conn, new_exercise_id, athlete_id, planID, exerciseTypeID, setsCount, repsPerSetCount)
+    db.create_exercise_for_athlete(conn, new_exercise_id, athlete_id, plan_id, exercise_type_id, sets_count, reps_per_set_count)

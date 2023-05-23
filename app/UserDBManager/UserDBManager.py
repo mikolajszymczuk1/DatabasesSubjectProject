@@ -17,24 +17,24 @@ class UserDBManager:
     def run(self) -> None:
         """ Run main user manager loop """
 
-        selectedOption: Optional[int] = None
-        while selectedOption != MenuOptionsEnum.EXIT.value:
+        selected_option: Optional[int] = None
+        while selected_option != MenuOptionsEnum.EXIT.value:
             self.clear_terminal()
             self.show_menu()
 
             try:
-                selectedOption = int(input('Select option: '))
+                selected_option = int(input('Select option: '))
                 self.clear_terminal()
 
-                if selectedOption == MenuOptionsEnum.SHOW_ATHLETES.value:
+                if selected_option == MenuOptionsEnum.SHOW_ATHLETES.value:
                     self.show_athletes_operation()
-                elif selectedOption == MenuOptionsEnum.SHOW_ATHLETE_EXERCISES.value:
+                elif selected_option == MenuOptionsEnum.SHOW_ATHLETE_EXERCISES.value:
                     self.show_athletes_exercises_operation()
-                elif selectedOption == MenuOptionsEnum.ADD_ATHLETE.value:
+                elif selected_option == MenuOptionsEnum.ADD_ATHLETE.value:
                     self.add_athlete_operation()
-                elif selectedOption == MenuOptionsEnum.ADD_EXERCISE.value:
+                elif selected_option == MenuOptionsEnum.ADD_EXERCISE.value:
                     self.add_exercise_operation()
-                elif selectedOption == MenuOptionsEnum.EXIT.value:
+                elif selected_option == MenuOptionsEnum.EXIT.value:
                     print('Exit program')
 
             except ValueError:
