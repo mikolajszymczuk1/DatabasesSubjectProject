@@ -12,6 +12,13 @@ class UserDBManager:
     CONTINUE_MSG = 'Press something to continue ...'
 
     def __init__(self, conn: Connection) -> None:
+        """
+        Initialize UserDBManager instance.
+
+        :param conn: The database connection.
+        :type conn: Connection
+        """
+
         self.conn = conn
 
     def run(self) -> None:
@@ -43,7 +50,7 @@ class UserDBManager:
                 input(self.CONTINUE_MSG)
 
     def clear_terminal(self) -> None:
-        """ Clear terminal with specific command based on OS type """
+        """ Clear terminal with specific command based on OS type. """
 
         if name == 'nt':
             system('cls')
@@ -65,19 +72,19 @@ class UserDBManager:
         print(get_athletes_data(self.conn).to_string(index=False))
 
     def show_athletes_exercises_operation(self) -> None:
-        """ Show athletes exercise """
+        """ Show athletes exercise. """
 
         firstname = input('Enter firstname: ')
         lastname = input('Enter lastname: ')
         print(get_athlete_exercises(self.conn, firstname, lastname).to_string(index=False))
 
     def add_athlete_operation(self) -> None:
-        """ Add new athlete """
+        """ Add new athlete. """
 
         print('Add athlete')
 
     def add_exercise_operation(self) -> None:
-        """ Add new exercise """
+        """ Add new exercise. """
 
         firstname = input('Enter firstname: ')
         lastname = input('Enter lastname: ')
