@@ -5,15 +5,15 @@ from ..dbManager.db import create_connection
 from typing import Generator, Optional
 
 # Database config
-DATABASE_NAME = 'sportAppDatabaseTest'
-BASE_DIR = path.dirname(path.dirname(path.abspath(__file__)))
-DB_TEST_PATH = path.join(BASE_DIR, f'data/{DATABASE_NAME}.db')
+DATABASE_NAME: str = 'sportAppDatabaseTest'
+BASE_DIR: str = path.dirname(path.dirname(path.abspath(__file__)))
+DB_TEST_PATH: str = path.join(BASE_DIR, f'data/{DATABASE_NAME}.db')
 
 @pytest.fixture(scope='session')
 def db_connection() -> Generator[Optional[Connection], None, None]:
     """ Prepare database connection """
 
-    conn = create_connection(DB_TEST_PATH)
+    conn: Connection | None = create_connection(DB_TEST_PATH)
 
     if conn is not None:
         yield conn
@@ -30,11 +30,11 @@ def prepare_test_database(db_connection) -> None:
     - Insert test data to all tables
     """
 
-    clear_all_tables_script_path = path.join(BASE_DIR, 'sql', 'clear_all_tables.sql')
-    insert_test_data = path.join(BASE_DIR, 'sql', 'insert_test_data.sql')
+    clear_all_tables_script_path: str = path.join(BASE_DIR, 'sql', 'clear_all_tables.sql')
+    insert_test_data: str = path.join(BASE_DIR, 'sql', 'insert_test_data.sql')
 
     with open(clear_all_tables_script_path, 'r') as file:
-        script = file.read()
+        script: str = file.read()
         db_connection.executescript(script)
         file.close()
 
