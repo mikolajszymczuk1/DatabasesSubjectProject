@@ -113,7 +113,26 @@ def create_exercise_for_athlete(conn: Connection, firstname: str, lastname: str,
 
 
 def create_athlete(conn: Connection, first_name: str, last_name: str, age: int, athlete_weight: int, gender: str, experience_id: int) -> None:
-    """ """
+    """
+    Create a new athlete record.
+
+    :param conn: The database connection.
+    :type conn: Connection
+    :param first_name: The first name of the athlete
+    :type first_name: str
+    :param last_name: The last name of the athlete
+    :type last_name: str
+    :param age: The age of the athlete
+    :type age: int
+    :param athlete_weight: The weight of the athlete
+    :type athlete_weight: int
+    :param gender: The gender of the athlete
+    :type gender: str
+    :param experience_id: The ID of the experience from experience table
+    :type experience_id: int
+    :return: None
+    :rtype: None
+    """
 
     new_athlete_id: int = get_max_id_from_table(conn, 'athlete', 'athleteID') + 1
     print(f'---> {new_athlete_id}')
