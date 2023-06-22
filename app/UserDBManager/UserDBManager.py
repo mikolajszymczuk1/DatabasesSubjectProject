@@ -10,7 +10,7 @@ from dbManager.bo import (
 )
 
 class UserDBManager:
-    CONTINUE_MSG = 'Press something to continue ...'
+    CONTINUE_MSG: str = 'Press something to continue ...'
 
     def __init__(self, conn: Connection) -> None:
         """
@@ -75,8 +75,8 @@ class UserDBManager:
     def show_athletes_exercises_operation(self) -> None:
         """ Show athletes exercise. """
 
-        firstname = input('Enter firstname: ')
-        lastname = input('Enter lastname: ')
+        firstname: str = input('Enter firstname: ')
+        lastname: str = input('Enter lastname: ')
         print(get_athlete_exercises(self.conn, firstname, lastname).to_string(index=False))
 
     def add_athlete_operation(self) -> None:
