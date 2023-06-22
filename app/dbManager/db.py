@@ -71,7 +71,7 @@ def get_athletes_data(conn: Connection) -> list:
 
     query = '''
         SELECT athleteID, firstName, lastName, age, athleteWeight, gender, experienceLevel
-        FROM Athlete INNER JOIN Experience on Athlete.athleteID = Experience.experienceID;
+        FROM Athlete INNER JOIN Experience on Athlete.experienceID = Experience.experienceID;
     '''
 
     result = conn.execute(query)
@@ -120,7 +120,7 @@ def get_single_athlete_data(conn: Connection, firstname: str, lastname: str) -> 
 
     query = f'''
         SELECT athleteID, firstName, lastName, age, athleteWeight, gender, experienceLevel
-        FROM Athlete INNER JOIN Experience on Athlete.athleteID = Experience.experienceID
+        FROM Athlete INNER JOIN Experience on Athlete.experienceID = Experience.experienceID
         WHERE firstName = '{firstname}' AND lastName = '{lastname}';
     '''
 
@@ -153,6 +153,18 @@ def create_exercise_for_athlete(conn: Connection, exercise_id: int, athlete_id: 
     query = f'''
         INSERT INTO Exercise (exerciseID, athleteID, planID, exerciseTypeID, setsCount, repsPerSetCount)
             VALUES ({exercise_id}, {athlete_id}, {plan_id}, {exercise_type_id}, {sets_count}, {reps_per_set_count});
+    '''
+
+    conn.execute(query)
+    conn.commit()
+
+
+def create_athlete(conn: Connection, athlete_id: int, first_name: str, last_name: str, age: int, athlete_weight: int, gender: str, experience_id: int) -> None:
+    """ """
+
+    query = f'''
+        INSERT INTO Athlete (athleteID, firstName, lastName, age, athleteWeight, gender, experienceID)
+            VALUES ({athlete_id}, '{first_name}', '{last_name}', {age}, {athlete_weight}, '{gender}', {experience_id});
     '''
 
     conn.execute(query)

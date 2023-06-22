@@ -5,7 +5,8 @@ from enums.MenuOptionsEnum import MenuOptionsEnum
 from dbManager.bo import (
     get_athletes_data,
     get_athlete_exercises,
-    create_exercise_for_athlete
+    create_exercise_for_athlete,
+    create_athlete
 )
 
 class UserDBManager:
@@ -19,7 +20,7 @@ class UserDBManager:
         :type conn: Connection
         """
 
-        self.conn = conn
+        self.conn: Connection = conn
 
     def run(self) -> None:
         """ Run main user manager loop """
@@ -81,15 +82,21 @@ class UserDBManager:
     def add_athlete_operation(self) -> None:
         """ Add new athlete. """
 
-        print('Add athlete')
+        firstname: str = input('Enter firstname: ')
+        lastname: str = input('Enter lastname: ')
+        age: int = int(input('Enter age: '))
+        weight: int = int(input('Enter weight: '))
+        gender: str = input('Enter gender: ')
+        experience_id: int = int(input('Enter experience id: '))
+        create_athlete(self.conn, firstname, lastname, age, weight, gender, experience_id)
 
     def add_exercise_operation(self) -> None:
         """ Add new exercise. """
 
-        firstname = input('Enter firstname: ')
-        lastname = input('Enter lastname: ')
-        plan_id = int(input('Enter plan id: '))
-        exercise_type_id = int(input('Enter exercise type id: '))
-        sets_count = int(input('Enter exercise sets: '))
-        reps_count = int(input('Enter exercise reps: '))
+        firstname: str = input('Enter firstname: ')
+        lastname: str = input('Enter lastname: ')
+        plan_id: int = int(input('Enter plan id: '))
+        exercise_type_id: int = int(input('Enter exercise type id: '))
+        sets_count: int = int(input('Enter exercise sets: '))
+        reps_count: int = int(input('Enter exercise reps: '))
         create_exercise_for_athlete(self.conn, firstname, lastname, plan_id, exercise_type_id, sets_count, reps_count)

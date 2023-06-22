@@ -45,10 +45,10 @@ class TestBO:
     def test_get_athletes_data(self, db_connection: Connection) -> None:
         # GIVEN
         data = [
-            (1, 'John', 'Doe', 25, 66, 'Male', 'Beginner'),
+            (1, 'John', 'Doe', 25, 66, 'Male', 'Advanced'),
             (2, 'Jane', 'Doe', 28, 86, 'Female', 'Intermediate'),
-            (3, 'Michael', 'Johnson', 55, 190, 'Male', 'Advanced'),
-            (4, 'Sarah', 'Lee', 23, 90, 'Female', 'Elite')
+            (3, 'Michael', 'Johnson', 55, 190, 'Male', 'Elite'),
+            (4, 'Sarah', 'Lee', 23, 90, 'Female', 'Beginner')
         ]
 
         expected = DataFrame(data, columns=['ID', 'First Name', 'Last Name', 'Age', 'Weight', 'Gender', 'Skill Level'])
@@ -81,7 +81,7 @@ class TestBO:
         # GIVEN
         firstname: str = 'John'
         lastname: str = 'Doe'
-        expected = (1, 'John', 'Doe', 25, 66, 'Male', 'Beginner')
+        expected = (1, 'John', 'Doe', 25, 66, 'Male', 'Advanced')
 
         # WHEN
         result = get_single_athlete_data(db_connection, firstname, lastname)
